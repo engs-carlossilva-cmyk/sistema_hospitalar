@@ -221,7 +221,20 @@ void imprimirHistorico(PilhaHistorico& hist) {
         cout << "(nenhum atendimento registrado)\n";
         return;
     }
-    // ...
+
+    PilhaHistorico aux;
+    
+    // Desempilha da pilha principal e empilha na auxiliar (imprimindo do topo até a base)
+    while (!hist.isEmpty()) {
+        string item = hist.pop();
+        cout << "- " << item << "\n";
+        aux.push(item);
+    }
+
+    // Restaura os dados de volta para a pilha principal
+    while (!aux.isEmpty()) {
+        hist.push(aux.pop());
+    }
 }
 
 // ════════════════════════════════════════════════════════════════
